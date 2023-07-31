@@ -63,7 +63,7 @@ function Banner(props) {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <div className="d-flex align-items-center justify-content-between py-5">
+                <div className="d-flex align-items-center justify-content-between py-4">
                   <h1>
                     {" "}
                     <span className="text-yellow">WelCome</span> , {props.value}{" "}
@@ -80,7 +80,7 @@ function Banner(props) {
                       return (
                         <>
                           <div className="col-12 pb-3">
-                            <div className="d-flex justify-content-between align-items-center bg-white border-radius-8 p-2">
+                            <div className="d-sm-flex d-grid justify-content-between align-items-center bg-white border-radius-8 p-2">
                               <Product
                                 imgValue={item.img}
                                 price={item.price}

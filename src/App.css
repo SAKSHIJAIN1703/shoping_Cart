@@ -53,9 +53,9 @@ p {
   font-size: 14px !important;
 }
 .product-img img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
+  /* width: 120px;
+  height: 120px; */
+  object-fit: contain;
 }
 .add-btn {
   background: #fbc649;
