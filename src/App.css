@@ -1,0 +1,119 @@
+/* .App{
+  height: 100vh;
+} */
+.inputField {
+  height: 100vh;
+  width: 100%;
+
+  background: #c326ffbd;
+}
+.box-input {
+  flex-direction: column;
+}
+.input-box {
+  background: none;
+  box-shadow: 0px 0px 4px #19141887;
+  border: 1px solid #555150;
+
+  height: 37px;
+}
+.input-box:focus-visible {
+  outline: 0px;
+}
+.box {
+  width: 400px;
+  background: #fff;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0px 3px 17px #0000008a;
+}
+.border-radius-8 {
+  border-radius: 8px;
+}
+.submit-btn {
+  background: #d35eff1c;
+
+  /* height: 100%; */
+  border: 1px solid #d35eff;
+  height: 39px;
+
+  box-shadow: 0px 1px 2px #c41010;
+}
+.banner {
+  background-color: #ececec8f;
+}
+h5 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+.font-weight-500 {
+  font-weight: 500;
+}
+p {
+  font-size: 14px !important;
+}
+.product-img img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.add-btn {
+  background: #fbc649;
+  border: none;
+
+  height: 35px;
+}
+h1 {
+  font-size: 38px !important;
+  font-weight: 700 !important;
+}
+.text-yellow {
+  color: #ff0000;
+}
+.cartBanner {
+  height: 60px;
+}
+.font-size-20 {
+  font-size: 20px !important  ;
+}
+.border {
+}
+.bg-yellow {
+  background-color: #fed055;
+}
+.product-bg {
+  height: 550px !important;
+  padding-bottom: 0 !important;
+}
+.cart-bg,
+.product-bg {
+  height: 500px;
+  overflow-y: scroll;
+  position: relative;
+  padding-bottom: 60px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.payment {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+}
+.cart-minus button,
+.cart-plus button {
+  border: 2px solid #fed055;
+  width: 25px;
+  height: 25px;
+  background: #fed05559;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 5px;
+}
+.swal-footer {
+  display: flex;
+  justify-content: center;
+}
