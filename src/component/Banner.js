@@ -84,7 +84,7 @@ function Banner(props) {
           <div className="container">
             <div className="row complex justify-content-center">
               {open === true ? (
-                <div className="bg-white position-relative  ">
+                <div className="bg-white  ">
                   <div className="cartBanner cart-top-banner bg-black w-100 border-radius-b-8 px-4 d-flex align-items-center justify-content-between">
                     <div
                       className="d-flex justify-content-center align-items-center "
@@ -234,7 +234,7 @@ function Banner(props) {
                           return (
                             <>
                               <div className="col-12 pb-3">
-                                <div className="d-sm-flex d-grid justify-content-between align-items-end bg-white border-radius-8 p-2 box-shadow">
+                                <div className="d-flex justify-content-between align-items-end bg-white border-radius-8 p-2 box-shadow">
                                   <Product
                                     imgValue={item.img}
                                     price={item.price}
