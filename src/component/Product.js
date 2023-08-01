@@ -6,7 +6,7 @@ import React, { Component, useState } from "react";
 function Product(props) {
   return (
     <>
-      <div className="d-flex justify-content-start align-items-md-center align-items-start gap-2">
+      <div className="d-flex justify-content-start  align-items-start gap-2">
         <div className="product-img">
           <img src={props.imgValue} alt="" className="w-100" />
         </div>
