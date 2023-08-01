@@ -99,13 +99,13 @@ h1 {
   background-color: #fed055;
 }
 .product-bg {
-  height: 580px !important;
+  /* height: 580px !important; */
   padding-bottom: 0 !important;
   padding-top: 90px !important;
 }
 .cart-bg,
 .product-bg {
-  height: 600px;
+  height: 100vh;
   overflow-y: scroll;
   padding-top: 63px;
   position: relative;
