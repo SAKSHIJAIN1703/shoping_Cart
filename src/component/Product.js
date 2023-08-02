@@ -1,7 +1,7 @@
 // import img from '../img/DSC_1614.JPG';
 import "../App.js";
 import "../App.css";
-import React, { Component, useState } from "react";
+import React from "react";
 
 function Product(props) {
   return (

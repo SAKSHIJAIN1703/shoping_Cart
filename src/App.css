@@ -178,3 +178,16 @@ h1 {
     width: 100% !important;
   }
 }
+.empty-cart {
+  padding: 0 42px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.empty-cart-btn {
+  background-color: #ff0000;
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: none !important;
+}

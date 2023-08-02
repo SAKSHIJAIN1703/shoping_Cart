@@ -27,7 +27,7 @@ function App({ history }) {
           <div className="inputField d-flex align-items-center">
             <div className="box  d-flex justify-content-center align-items-center mx-auto">
               <div className="box-img">
-                <img className="w-100" src={loginImg} />
+                <img className="w-100" src={loginImg} alt="img" />
               </div>
               <div className="box-input py-3 d-flex justify-content-center align-items-center gap-3 ">
                 <h5 className="text-black text-capitalize mb-0 ">
