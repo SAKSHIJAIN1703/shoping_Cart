@@ -8,8 +8,8 @@ import image from "../img/food.png";
 const data = {
   productData: [
     {
-      price: 1000,
-      title: "Lasagne Pasta",
+      price: 70,
+      title: "Pav Bhaji",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       img: image,
@@ -28,79 +28,79 @@ const data = {
     {
       price: 10000,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Maggie",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 3,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 50,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Momos",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 4,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 90,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Aalu Chaat",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 5,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 9000,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Pizza",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 6,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 20,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Burger",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 7,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 200,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Chilly Patato",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 8,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 130,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Panner Tikka",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 9,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 28,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Patties",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 10,
       quantity: 1,
     },
     {
-      price: 5000,
+      price: 240,
       img: image,
-      title: "Lasagne Pasta",
+      title: "Cold Coffee",
       description:
         "Flat Shape Layered Pasta Sheet with Veggies , Tomato & Cheese Sauce",
       id: 11,

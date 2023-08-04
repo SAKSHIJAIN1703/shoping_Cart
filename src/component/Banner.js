@@ -12,11 +12,33 @@ import { ToastContainer, toast, Zoom } from "react-toastify";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import "react-toastify/dist/ReactToastify.css";
 function Banner(props) {
+  const [filteredList, setFilteredList] = new useState(data.productData);
+  console.log(filteredList, "filterdList");
+  const filterBySearch = (event) => {
+    // Access input value
+    const query = event.target.value;
+    // console.log(event.target.value, "event.target.value");
+    // Create copy of item list
+    var updatedList = [...data.productData];
+    // Include all elements which includes the search query
+    const update = () =>
+      updatedList.filter((item) => {
+        return item.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      });
+
+    // Trigger render with updated values
+    setFilteredList(update);
+  };
+
   const [empty, setEmpty] = useState();
+  const [orderTrue, setOrderTrue] = useState(false);
   const [orderBox, setOrderBox] = useState([]);
   const [showOrder, setShowOrder] = useState(false);
   const [orderBtn, setOrderBtn] = useState(false);
+  const [orderDetails, setOrderDetails] = useState([]);
+  const [orderSuccessFull, setOrderSuccessFull] = useState(false);
   const orderPlaced = () => {
+    setOrderSuccessFull(!orderSuccessFull);
     swal("order placed successfully");
     setCART([]);
     console.log(CART, "--CART");
@@ -47,6 +69,8 @@ function Banner(props) {
   const [cartCount, setCartCount] = useState(0);
   useEffect(() => {
     setCART(addCart);
+    setOrderTrue();
+    setOrderSuccessFull();
   }, [addCart]);
   const [save, setSave] = useState(true);
   const addToCart = (data, index) => {
@@ -62,9 +86,11 @@ function Banner(props) {
     }
   };
   const viewOrder = () => {
-    setOrderBox(CART);
-    setCART(addCart);
-    setOrderBtn(!orderBtn);
+    setShowOrder(addCart);
+    setOrderSuccessFull(!orderSuccessFull);
+    setOrderTrue(true);
+    // setCART(addCart);
+    // setOrderBtn(!orderBtn);
     // setCART([]);
   };
   const removeItem = (cartItem) => {
@@ -105,154 +131,206 @@ function Banner(props) {
                     </div>
                   </div>
                   <div className="cart-bg ">
-                    <div
-                      className="cartBanner payment bg-yellow w-100  justify-content-center d-flex align-items-center gap-2 cursor-pointer"
-                      onClick={() => {
-                        viewOrder();
-                      }}
-                    >
-                      <LocalMallIcon />
-                      <h4 className="text-black font-weight-700 mb-0 font-size-20">
-                        view order
-                      </h4>
-                    </div>
-
-                    <>
-                      {CART.length > 0 ? (
-                        <>
-                          {CART?.map((cartItem, cartIndex) => {
-                            return (
-                              <>
-                                <div
-                                  key={cartIndex}
-                                  className={`cart py-2 px-3 mx-2 my-3 border-radius-8 box-shadow cart-${cartItem.id}`}
-                                >
-                                  <div className="d-flex justify-content-start gap-3">
-                                    <div>
-                                      <img src={vegImg} alt="" className="" />
-                                    </div>
-                                    <div className="">
-                                      <h5 className="text-black mb-0">
-                                        {cartItem.title}
-                                      </h5>
-                                      <p className="mb-0">
-                                        {cartItem.description}
-                                      </p>
-                                      <div className="d-flex justify-content-start">
-                                        <p className="mb-0 font-weight-500">
-                                          {/* price : {totalPrice} */}
-                                          price:
-                                          {cartItem.price * cartItem.quantity}
-                                        </p>
-                                      </div>
-                                    </div>
+                    {orderTrue === true ? (
+                      <>
+                        {showOrder?.map((item, index) => {
+                          return (
+                            <>
+                              <div
+                                key={item}
+                                className={`cart py-2 px-3 mx-2 my-3 border-radius-8 box-shadow cart-${item.id}`}
+                              >
+                                <div className="d-flex justify-content-start gap-3">
+                                  <div>
+                                    <img src={vegImg} alt="" className="" />
                                   </div>
-
-                                  <div className="remove-item  px-4 d-flex justify-content-between align-items-end pt-3">
-                                    <div>
-                                      <button
-                                        className="add-btn border-radius-8  px-3"
-                                        onClick={() => removeItem(cartItem)}
-                                      >
-                                        remove
-                                      </button>
-                                      <ToastContainer />
-                                    </div>
-                                    <div className="cart-btn d-flex gap-2">
-                                      <div className="cart-minus">
-                                        <button
-                                          onClick={() => {
-                                            const _CART = CART.map(
-                                              (item, index) => {
-                                                return cartIndex === index
-                                                  ? {
-                                                      ...item,
-                                                      quantity:
-                                                        item.quantity > 1
-                                                          ? item.quantity - 1
-                                                          : 1,
-                                                    }
-                                                  : item;
-                                              }
-                                            );
-                                            setCART(_CART);
-                                          }}
-                                        >
-                                          -
-                                        </button>
-                                      </div>
-                                      <p className="mb-0">
-                                        {cartItem.quantity}
+                                  <div className="">
+                                    <h5 className="text-black mb-0">
+                                      {item.title}
+                                    </h5>
+                                    <p className="mb-0">{item.description}</p>
+                                    <div className="d-flex justify-content-start">
+                                      <p className="mb-0 font-weight-500">
+                                        {/* price : {totalPrice} */}
+                                        price:
+                                        {item.price * item.quantity}
                                       </p>
-                                      <div className="cart-plus">
-                                        <button
-                                          onClick={() => {
-                                            const _CART = CART.map(
-                                              (item, index) => {
-                                                return cartIndex === index
-                                                  ? {
-                                                      ...item,
-                                                      quantity:
-                                                        cartItem.quantity + 1,
-                                                    }
-                                                  : item;
-                                              }
-                                            );
-                                            setCART(_CART);
-                                          }}
-                                        >
-                                          +
-                                        </button>
-                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </>
-                            );
-                          })}
-                          <div
-                            className="cartBanner payment bg-yellow w-100  justify-content-center d-flex align-items-center  cursor-pointer"
-                            onClick={() => {
-                              orderPlaced();
-                            }}
-                          >
-                            <h4 className="text-black font-weight-700 mb-0 font-size-20">
-                              PAY ₹
-                              {CART.map((item) => {
-                                return item.price * item.quantity;
-                              }).reduce(
-                                (currValue, updatedValue) =>
-                                  currValue + updatedValue,
-                                0
-                              )}
-                            </h4>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="empty-cart d-flex justify-content-center flex-column gap-4 h-100 align-items-center">
-                            <h4 className=" text-capitalize mb-0 text-center">
-                              Your Cart is{" "}
-                              <span className="text-yellow"> empty !</span>
-                            </h4>
-                            <p className="text-gray mb-0  text-center">
-                              must add items on the cart before you proceed to
-                              checkout
-                            </p>
-                            <button
-                              className="bg-yellow empty-cart-btn"
+                              </div>
+                            </>
+                          );
+                        })}
+
+                        <div
+                          className="cartBanner payment bg-yellow w-100  justify-content-center d-flex align-items-center gap-2 cursor-pointer"
+                          onClick={() => {
+                            viewOrder();
+                          }}
+                        >
+                          <LocalMallIcon />
+                          <h4 className="text-black font-weight-700 mb-0 font-size-20">
+                            Track Order
+                          </h4>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        {CART.length > 0 ? (
+                          <>
+                            {CART?.map((cartItem, cartIndex) => {
+                              return (
+                                <>
+                                  <div
+                                    key={cartIndex}
+                                    className={`cart py-2 px-3 mx-2 my-3 border-radius-8 box-shadow cart-${cartItem.id}`}
+                                  >
+                                    <div className="d-flex justify-content-start gap-3">
+                                      <div>
+                                        <img src={vegImg} alt="" className="" />
+                                      </div>
+                                      <div className="">
+                                        <h5 className="text-black mb-0">
+                                          {cartItem.title}
+                                        </h5>
+                                        <p className="mb-0">
+                                          {cartItem.description}
+                                        </p>
+                                        <div className="d-flex justify-content-start">
+                                          <p className="mb-0 font-weight-500">
+                                            {/* price : {totalPrice} */}
+                                            price:
+                                            {cartItem.price * cartItem.quantity}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div className="remove-item  px-4 d-flex justify-content-between align-items-end pt-3">
+                                      <div>
+                                        <button
+                                          className="add-btn border-radius-8  px-3"
+                                          onClick={() => removeItem(cartItem)}
+                                        >
+                                          remove
+                                        </button>
+                                        <ToastContainer />
+                                      </div>
+                                      <div className="cart-btn d-flex gap-2">
+                                        <div className="cart-minus">
+                                          <button
+                                            onClick={() => {
+                                              const _CART = CART.map(
+                                                (item, index) => {
+                                                  return cartIndex === index
+                                                    ? {
+                                                        ...item,
+                                                        quantity:
+                                                          item.quantity > 1
+                                                            ? item.quantity - 1
+                                                            : 1,
+                                                      }
+                                                    : item;
+                                                }
+                                              );
+                                              setCART(_CART);
+                                            }}
+                                          >
+                                            -
+                                          </button>
+                                        </div>
+                                        <p className="mb-0">
+                                          {cartItem.quantity}
+                                        </p>
+                                        <div className="cart-plus">
+                                          <button
+                                            onClick={() => {
+                                              const _CART = CART.map(
+                                                (item, index) => {
+                                                  return cartIndex === index
+                                                    ? {
+                                                        ...item,
+                                                        quantity:
+                                                          cartItem.quantity + 1,
+                                                      }
+                                                    : item;
+                                                }
+                                              );
+                                              setCART(_CART);
+                                            }}
+                                          >
+                                            +
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </>
+                              );
+                            })}
+                          </>
+                        ) : (
+                          <>
+                            <div className="empty-cart d-flex justify-content-center flex-column gap-4 h-100 align-items-center">
+                              <h4 className=" text-capitalize mb-0 text-center">
+                                Your Cart is{" "}
+                                <span className="text-yellow"> empty !</span>
+                              </h4>
+                              <p className="text-gray mb-0  text-center">
+                                must add items on the cart before you proceed to
+                                checkout
+                              </p>
+                              <button
+                                className="bg-yellow empty-cart-btn"
+                                onClick={() => {
+                                  backArrow();
+                                }}
+                              >
+                                <h5 className="text-capitalize text-white mb-0">
+                                  return to shop
+                                </h5>
+                              </button>
+                            </div>
+                          </>
+                        )}
+                        {orderSuccessFull === true ? (
+                          <>
+                            <div
+                              className="cartBanner payment bg-yellow w-100  justify-content-center d-flex align-items-center gap-2 cursor-pointer"
                               onClick={() => {
-                                backArrow();
+                                viewOrder();
                               }}
                             >
-                              <h5 className="text-capitalize text-white mb-0">
-                                return to shop
-                              </h5>
-                            </button>
-                          </div>
-                        </>
-                      )}
-                    </>
+                              <LocalMallIcon />
+                              <h4 className="text-black font-weight-700 mb-0 font-size-20">
+                                view order
+                              </h4>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div
+                              className="cartBanner payment bg-yellow w-100  justify-content-center d-flex align-items-center  cursor-pointer"
+                              onClick={() => {
+                                orderPlaced();
+                              }}
+                            >
+                              <h4 className="text-black font-weight-700 mb-0 font-size-20">
+                                PAY ₹
+                                {CART.map((item) => {
+                                  return item.price * item.quantity;
+                                }).reduce(
+                                  (currValue, updatedValue) =>
+                                    currValue + updatedValue,
+                                  0
+                                )}
+                              </h4>
+                            </div>
+                          </>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -277,8 +355,22 @@ function Banner(props) {
                           </div>
                         </div>
                       </div>
+
+                      {/* {updatedList.filter((item) => {
+                        return (
+                          item.toLowerCase().indexOf(query.toLowerCase()) !== -1
+                        );
+                      })} */}
                       <div className="product-bg">
-                        {data.productData.map((item, index) => {
+                        <div className="search-header pb-3 ">
+                          <input
+                            className="search-box w-100 box-shadow"
+                            id="search-box"
+                            onChange={filterBySearch}
+                            placeholder="search"
+                          />
+                        </div>
+                        {filteredList.map((item, index) => {
                           return (
                             <>
                               <div className="col-12 pb-3" key={index}>
